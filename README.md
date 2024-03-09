@@ -1,4 +1,4 @@
-# calculadora
+# Calculadora 
 Una calculadora básica hecha con HTML, CSS and JavaScript
 
 Colocar una "X" por dada paso completado:
