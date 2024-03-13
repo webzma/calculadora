@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap');
+
 :root {
   --white: #ffffff;
   --black: #000000;
@@ -10,18 +12,21 @@
   box-sizing: border-box;
 }
 
-body {
+body{
   height: 100vh;
-  font-family: sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Oufit', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal
 }
 
 .widget {
   width: 350px;
   height: 550px;
-  border-radius: 10px;
+  border-radius: 15px;
   border: solid 3.7px var(--off-black);
   box-shadow: 7px 7px var(--off-black);
   display: flex;
@@ -74,9 +79,11 @@ body {
   width: 60px;
   height: 60px;
   margin: 7px;
-  border-radius: 4px;
+  border-radius: 10px;
   color: var(--black);
-  border: solid 1px var(--off-black);
+  background-color: var(--white);
+  border: solid 2px var(--off-black);
+  box-shadow: 3px 3px var(--off-black);
 }
 
 .results {
