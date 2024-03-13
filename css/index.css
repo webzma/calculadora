@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap");
 
 :root {
   --white: #ffffff;
+  --white-hover: #e4e4e4;
   --black: #000000;
   --off-black: #292929;
 }
@@ -12,15 +13,15 @@
   box-sizing: border-box;
 }
 
-body{
+body {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Oufit', sans-serif;
+  font-family: "Oufit", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
-  font-style: normal
+  font-style: normal;
 }
 
 .widget {
@@ -79,29 +80,35 @@ body{
   width: 60px;
   height: 60px;
   margin: 7px;
+  font-weight: bold;
   border-radius: 10px;
   color: var(--black);
   background-color: var(--white);
   border: solid 2px var(--off-black);
   box-shadow: 3px 3px var(--off-black);
+  transition: 0.2s background ease-in-out;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: var(--white-hover);
 }
 
 .results {
-    display: flex;
-    align-items: flex-end;
-    flex-direction: column;
-    padding: 0px 30px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  padding: 0px 30px;
 }
 
 .final-score {
-    font-weight: bold;
-    font-size: 40px;
-    padding-bottom: 5px;
+  font-weight: bold;
+  font-size: 40px;
+  padding-bottom: 5px;
 }
 
 .display-operation {
-    color: gray;
-    font-weight: 500;
-    font-size: 16px;
+  color: gray;
+  font-weight: 500;
+  font-size: 16px;
 }
-
