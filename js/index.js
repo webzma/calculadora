@@ -4,6 +4,7 @@ function main() {
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
       setOption(button.getAttribute("data-option"));
+      setNumber(button.getAttribute("data-number"));
     });
   });
 }
@@ -19,15 +20,21 @@ function setOption(dataOption) {
   if (finalScoreScreen.textContent === "00") return;
 
   if (dataOption === "del") {
-    const neww = finalScoreScreen.textContent.split("");
-    const newValue = neww
+    const arrayNumber = finalScoreScreen.textContent.split("");
+    const newNumber = arrayNumber
       .splice(0, finalScoreScreen.textContent.length - 1)
       .join("");
 
-    finalScoreScreen.textContent = newValue;
+    finalScoreScreen.textContent = newNumber;
 
     if (finalScoreScreen.textContent.length === 0) {
       finalScoreScreen.textContent = "00";
     }
   }
+}
+
+function setNumber(dataNumber) {
+  if (!dataNumber) return;
+  const finalScoreScreen = document.querySelector(".final-score");
+  finalScoreScreen.textContent += dataNumber;
 }
