@@ -1,16 +1,32 @@
+const displayOperationContainer = document.querySelector(".display-operation");
+let firstValue = "";
+let isEmptyScreen = true;
+let operationValue = "";
+let lastValue = "";
+
 function main() {
   const buttons = document.querySelectorAll(".btn");
 
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
-      setOption(button.getAttribute("data-option"));
-      setNumber(button.getAttribute("data-number"));
+      if (button.getAttribute("data-option")) {
+        setOption(button.getAttribute("data-option"));
+      }
+
+      if (button.getAttribute("data-number")) {
+        setNumber(button.getAttribute("data-number"));
+      }
+
+      if (button.getAttribute("data-operation")) {
+        setOperation(button.getAttribute("data-operation"));
+      }
     });
   });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   main();
+  isEmpty();
 });
 
 // En esta función se controlarán todos los botones de tipo option (observar atributo 'data' de cada botón)
@@ -36,5 +52,38 @@ function setOption(dataOption) {
 function setNumber(dataNumber) {
   if (!dataNumber) return;
   const finalScoreScreen = document.querySelector(".final-score");
+
+  if (isEmptyScreen) {
+    finalScoreScreen.textContent = "";
+    isEmptyScreen = false;
+  }
+
   finalScoreScreen.textContent += dataNumber;
+  firstValue += dataNumber;
+  console.log(firstValue);
+}
+
+const operations = {
+  sum: "+",
+  subtract: "-",
+  multiply: "*",
+  divide: "/",
+};
+
+function setOperation(dataOperation) {
+  const finalScoreScreen = document.querySelector(".final-score");
+  finalScoreScreen.textContent = operations[dataOperation];
+
+  const firstValueSpan = document.createElement("span");
+  firstValueSpan.textContent = firstValue;
+  displayOperationContainer.appendChild(firstValueSpan);
+}
+
+function isEmpty() {
+  if (isEmptyScreen) {
+    const finalScoreScreen = document.querySelector(".final-score");
+    if (finalScoreScreen.textContent === "") {
+      finalScoreScreen.textContent = "00";
+    }
+  }
 }
