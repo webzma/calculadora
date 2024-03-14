@@ -102,13 +102,21 @@ body {
 }
 
 .final-score {
+  text-align: end;
   font-weight: bold;
   font-size: 40px;
   padding-bottom: 5px;
+  width: 300px;
+  height: auto;
+  word-wrap: break-word;
 }
 
 .display-operation {
+  text-align: end;
   color: gray;
   font-weight: 500;
   font-size: 16px;
+  width: 300px;
+  height: auto;
+  word-wrap: break-word;
 }
