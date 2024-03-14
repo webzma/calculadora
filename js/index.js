@@ -24,11 +24,6 @@ function main() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  main();
-  isEmpty();
-});
-
 // En esta función se controlarán todos los botones de tipo option (observar atributo 'data' de cada botón)
 function setOption(dataOption) {
   const finalScoreScreen = document.querySelector(".final-score");
@@ -76,7 +71,10 @@ function setOperation(dataOperation) {
 
   const firstValueSpan = document.createElement("span");
   firstValueSpan.textContent = firstValue;
-  displayOperationContainer.appendChild(firstValueSpan);
+
+  if (displayOperationContainer.children.length === 0) {
+    displayOperationContainer.appendChild(firstValueSpan);
+  }
 }
 
 function isEmpty() {
@@ -87,3 +85,8 @@ function isEmpty() {
     }
   }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  main();
+  isEmpty();
+});
