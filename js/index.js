@@ -1,4 +1,5 @@
 const displayOperationContainer = document.querySelector(".display-operation");
+const finalScoreScreen = document.querySelector(".final-score");
 let firstValue = "";
 let isEmptyScreen = true;
 let operationValue = "";
@@ -26,60 +27,125 @@ function main() {
 
 // En esta función se controlarán todos los botones de tipo option (observar atributo 'data' de cada botón)
 function setOption(dataOption) {
-  const finalScoreScreen = document.querySelector(".final-score");
+  const displayOperationScreen = document.querySelector(".display-operation");
 
-  if (finalScoreScreen.textContent === "00") return;
+  if (displayOperationScreen.textContent === "00") return;
 
   if (dataOption === "del") {
-    const arrayNumber = finalScoreScreen.textContent.split("");
+    const arrayNumber = displayOperationScreen.textContent.split("");
     const newNumber = arrayNumber
-      .splice(0, finalScoreScreen.textContent.length - 1)
+      .splice(0, displayOperationScreen.textContent.length - 1)
       .join("");
 
-    finalScoreScreen.textContent = newNumber;
+      displayOperationScreen.textContent = newNumber;
 
-    if (finalScoreScreen.textContent.length === 0) {
+    if (displayOperationScreen.textContent.length === 0) {
+      displayOperationScreen.textContent = "";
       finalScoreScreen.textContent = "00";
+      firstValue = "";
+      lastValue = "";
+      operationValue = "";
+      isEmptyScreen = true;
     }
   }
 }
 
 function setNumber(dataNumber) {
   if (!dataNumber) return;
-  const finalScoreScreen = document.querySelector(".final-score");
+  const displayOperationScreen = document.querySelector(".display-operation");
 
-  if (isEmptyScreen) {
-    finalScoreScreen.textContent = "";
+  if (isEmptyScreen || displayOperationScreen.textContent === "") {
+    displayOperationScreen.textContent = "";
     isEmptyScreen = false;
   }
 
-  finalScoreScreen.textContent += dataNumber;
-  firstValue += dataNumber;
-  console.log(firstValue);
+  displayOperationScreen.textContent += dataNumber;
+
+  if (!operationValue) {
+    firstValue += dataNumber;
+    console.log(firstValue);
+  } else {
+    lastValue += dataNumber;
+  }
 }
 
 const operations = {
   sum: "+",
   subtract: "-",
-  multiply: "*",
+  multiply: "x",
   divide: "/",
+  porcent: "%"
 };
 
 function setOperation(dataOperation) {
-  const finalScoreScreen = document.querySelector(".final-score");
-  finalScoreScreen.textContent = operations[dataOperation];
+  const displayOperationScreen = document.querySelector(".display-operation");
 
-  const firstValueSpan = document.createElement("span");
-  firstValueSpan.textContent = firstValue;
-
-  if (displayOperationContainer.children.length === 0) {
-    displayOperationContainer.appendChild(firstValueSpan);
+  if (operationValue && lastValue) {
+    calculateResult();
   }
+
+  if (!firstValue) return;
+
+  operationValue = dataOperation;
+  displayOperationScreen.textContent += " " + operations[dataOperation] + " ";
+  isEmptyScreen = false;
+
+  // displayOperationScreen.textContent = operations[dataOperation];
+
+  // const firstValueSpan = document.createElement("span");
+  // firstValueSpan.textContent = firstValue;
+
+  // if (displayOperationContainer.children.length === 0) {
+  //   displayOperationContainer.appendChild(firstValueSpan);
+  // }
+
+  // if (operationValue) return;
+
+}
+
+function calculateResult() {
+  if (!firstValue || !operationValue || !lastValue) return;
+
+  const displayOperationScreen = document.querySelector(".display-operation");
+  let result = 0;
+  const firstNumber = parseFloat(firstValue);
+  const secondNumber = parseFloat(lastValue);
+
+  switch (operationValue) {
+    case "sum":
+      result = firstNumber + secondNumber;
+      break;
+    case "subtract":
+      result = firstNumber - secondNumber;
+      break;
+    case "multiply":
+      result = firstNumber * secondNumber;
+      break;
+    case "divide":
+      if (secondNumber === 0) {
+        alert("No puedes dividir por cero :v");
+        return
+      }
+      result = firstNumber / secondNumber;
+      break;
+    case "porcent":
+      result = (firstNumber * secondNumber) / 100;  
+      break;
+    default:
+      return;
+  }
+
+  finalScoreScreen.textContent = result;
+  finalScoreScreen.textContent = firstValue + " " + operations[dataOperation] + " ";
+  firstValue = result.toString();
+  lastValue = "";
+  operationValue = "";
+  isEmptyScreen = true;
 }
 
 function isEmpty() {
   if (isEmptyScreen) {
-    const finalScoreScreen = document.querySelector(".final-score");
+    // const finalScoreScreen = document.querySelector(".final-score");
     if (finalScoreScreen.textContent === "") {
       finalScoreScreen.textContent = "00";
     }
