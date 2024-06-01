@@ -4,7 +4,7 @@ Una calculadora básica hecha con HTML, CSS and JavaScript.🌟
 
 Colocar una "X" por cada paso completado✅:
 
-- [✅] Realizar interfaz de la calculadora
+- [] Realizar interfaz de la calculadora
 - [] Debe poder sumar números tanto enteros como flotantes
 - [] Debe poder restar números tanto enteros como flotantes
 - [] Debe poder multiplicar números tanto enteros como flotantes
